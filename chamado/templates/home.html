@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block titulo %}
+<title>Index</title>
+{% endblock titulo %} {% block conteudo %} {% load humanize %} {% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header text-center bg-danger">
+                To Do
+            </div>
+            <div class="card-body ">
+                {% if todo %} {% for c in todo %}
+                <blockquote class="text-break">
+                    <p>{{ c.titulo }}</p>
+                    <footer class="blockquote-footer">
+                        <cite title="Source Title">De: {{ c.cliente }},</cite> {{ c.criado|naturaltime }} |
+                        <a href="{% url 'chamado:change-status' c.pk %}"><i class="fas fa-edit fa-lg text-success" title="Editar"></i></a>
+                        <a href="#"><i class="fas fa-info-circle fa-lg text-success" title="Detalhes"></i></a>
+                    </footer>
+                </blockquote>
+                {% endfor %} {% else %}
+                <blockquote class="text-break">
+                    <p>Sem Chamados</p>
+                </blockquote>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header text-center bg-warning">
+                Doing
+            </div>
+            <div class="card-body ">
+                {% if doing %} {% for c in doing %}
+                <blockquote class="text-break">
+                    <p>{{ c.titulo }}</p>
+                    <footer class="blockquote-footer">
+                        <cite title="Source Title">De: {{ c.cliente }},</cite> {{ c.criado|naturaltime }} |
+                        <a href="{% url 'chamado:change-status' c.pk %}"><i class="fas fa-edit fa-lg text-success" title="Editar"></i></a>
+                        <a href="#"><i class="fas fa-info-circle fa-lg text-success" title="Detalhes"></i></a>
+                    </footer>
+                </blockquote>
+                {% endfor %} {% else %}
+                <blockquote class="text-break">
+                    <p>Sem Chamados</p>
+                </blockquote>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card" style="width: 25rem;">
+            <div class="card-header text-center bg-success">
+                Done
+            </div>
+            <div class="card-body ">
+                {% if done %} {% for c in done %}
+                <blockquote class="text-break">
+                    <p>{{ c.titulo }}</p>
+                    <footer class="blockquote-footer">
+                        <cite title="Source Title">De: {{ c.cliente }},</cite> {{ c.criado|naturaltime }} |
+                        <a href="{% url 'chamado:change-status' c.pk %}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-edit fa-lg text-success" title="Editar"></i></a>
+                        <a href="#"><i class="fas fa-info-circle fa-lg text-success" title="Detalhes"></i></a>
+                    </footer>
+                </blockquote>
+                {% endfor %} {% else %}
+                <blockquote class="text-break">
+                    <p>Sem Chamados</p>
+                </blockquote>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

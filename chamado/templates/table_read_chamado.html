@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block titulo %}
+<title>Listagem de Chamados</title>
+{% endblock titulo %} {% block conteudo %} {% load crispy_forms_tags %} {% load humanize %}
+<H1 class="text-center">{{ table }}</H1><hr>
+<table class="table table-striped table-hover table-md">
+    <caption>Lista de chamados</caption>
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Título</th>
+            <th>Cliente</th>
+            <th>Criado</th>
+            <th>Prioridade</th>
+            <th>Estado</th>
+            <th>Técnico</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for chamado in object_list %}
+        <tr>
+            <td>{{ chamado.numero }}</td>
+            <td>{{ chamado.titulo }}</td>
+            <td>{{ chamado.cliente }}</td>
+            <td>{{ chamado.criado|naturaltime }}</td>
+            <td>{{ chamado.prioridade }}</td>
+            <td>{{ chamado.estado }}</td>
+            <td>{{ chamado.tecnico }}</td>
+            <td>
+                <a href="{% url 'chamado:edit' chamado.pk %}"><i class="far fa-edit fa-lg" title="Editar"></i></a>
+                <a href="{% url 'chamado:delete' chamado.pk %}"><i class="far fa-trash-alt fa-lg text-danger" title="Deletar"></i></a> {% if chamado.estado != 'Fechado' %}
+                <a href="{% url 'chamado:change-status' chamado.pk %}"><i class="fas fa-lock-open fa-lg text-success" title="Fechar"></i></a> {% else %}
+                <a href="{% url 'chamado:change-status' chamado.pk %}"><i class="fas fa-lock fa-lg text-success" title="Abrir Novamente"></i></a> {% endif %}
+                <a href="{% url 'chamado:owner' chamado.pk %}"><i class="fas fa-user-edit fa-lg text-secondary"></i></a>
+                <a href="{% url 'chamado:delete' chamado.pk %}"><i class="fas fa-info-circle fa-lg text-info"></i></a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>Nenhum registrado</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

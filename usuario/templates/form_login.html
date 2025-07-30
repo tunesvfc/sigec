@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block titulo %}
+<title>Login</title>
+{% endblock titulo %} {% block conteudo %}
+{% load crispy_forms_tags %}
+    {% if request.user.is_authenticated %}
+        <h5>Permissão Negada, Contacte o Administrador</h5>
+
+        {% else %}
+
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+                <H3 class="text-center">Entrar no Sistema</H3><br>
+                <form action="" method="post">
+
+                    {% csrf_token %} {{ form|crispy }}
+
+                    <button type="submit" class="btn btn-primary">Iniciar Sessão</button>
+                </form>
+            </div>
+        </div>
+
+        {% endif %}
+{% endblock conteudo %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+{% load crispy_forms_tags %}
+{{ data }}
+	<form action="" method="post">
+
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-md-12 mb-0">
+                    {{ form.titulo|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12 mb-0">
+                    {{ form.prioridade|as_crispy_field }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-12 mb-0">
+                    {{ form.descricao|as_crispy_field }}
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+{% endblock %}

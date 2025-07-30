@@ -1,0 +1,5 @@
+DEBUG=True
+TEMPLATE_DEBUG=True
+SECRET_KEY=0nqo$h1wx^6l7=%k+1cbi8t@6#(s!2f+izg8cy_duno$t+6hyp
+ALLOWED_HOSTS=127.0.0.1,.localhost, .herokuapp.com
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
