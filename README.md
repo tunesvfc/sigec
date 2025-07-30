@@ -1,2 +1,2 @@
-# lingi
-Lingi - é uma plataforma para gerenciamento de chamados
+# SIGEC
+SIGEC - é uma plataforma para gerenciamento de chamados
